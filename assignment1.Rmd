@@ -1,0 +1,87 @@
+---
+title: "Assignment 1"
+author: "202274326"
+date: "October 11, 2023"
+output: html_document
+---
+
+```{r setup, include=FALSE} 
+# this chunk contains code that sets global options for the entire .Rmd. 
+# we use include=FALSE to suppress it from the top of the document, but it will still appear in the appendix. 
+
+knitr::opts_chunk$set(echo = FALSE) # actually set the global chunk options. 
+# we set echo=FALSE to suppress code such that it by default does not appear throughout the document. 
+# note: this is different from .Rmd default
+```
+
+## Exercise 1
+
+My forked version of the assignment template repository can be found at https://github.com/SylviXu/472_assignment_template
+
+
+## Exercise 2
+
+Here, I will present the original and the tidy version of the dataset "UCBAdmissions".
+The original dataset UCBAdmissions is untidy, because the observations are scattered across multipile rows by two different admission status ("Admitted" and "Rejected").
+I will convert the dataset using pivot_wider to make the rows of "Admitted" and "Rejected" into new columns. So that we can observe more clearly the frequency of admitted and rejected students by merit and gender in each category.
+
+```{r ex2}
+
+library(tidyverse)
+library(dplyr)
+library(datasets)
+
+#Load dataset "UCBAdmissions"
+data("UCBAdmissions")
+
+#This is an untidy dataset, because the observations are scattered across 
+# multiple rows by two different admission status ("Admitted" and "Rejected").
+head(UCBAdmissions)
+
+# I convert the dataset using pivot_wider, pivoting the rows of "Admitted" and "Rejected" into new columns, 
+# so that we can observe more clearly the frequency of admitted and rejected students by merit and gender in each category.
+wider_table <- as_tibble(UCBAdmissions) %>%
+  pivot_wider(names_from = Admit, values_from = n)
+head(wider_table)
+
+```
+
+## Exercise 3
+
+Here, I will calculate the average sepal length, the total number of observations, and the mean petal width for each species of the dataset "iris".
+
+```{r ex3}
+
+# Load the "iris" dataset
+data(iris)
+
+# Group the data by species and calculate the average sepal length
+sepal_length_summary <- iris %>%
+  group_by(Species) %>%
+  summarize(Avg_Sepal_Length = mean(Sepal.Length))
+sepal_length_summary
+
+# Calculate the total number of observations for each species
+observation_count <- iris %>%
+  group_by(Species) %>%
+  summarize(Count = n())
+observation_count
+
+# Calculate the mean petal width for each species
+petal_width_summary <- iris %>%
+  group_by(Species) %>%
+  summarize(Avg_Petal_Width = mean(Petal.Width))
+petal_width_summary
+
+```
+An informative aspect of the transformed data is that it provides a summary of the key characteristics of iris flowers, categorized by species. This allows for easy comparison of these traits between different species and reveals any variations or patterns that may not have been as obvious in the original data set.
+
+The original dataset contains raw and detailed measurements for individual objects, while the transformed data provides aggregated statistics for each species of iris. In other words, compared to the original dataset, the transformed data presents a higher level of observations. 
+
+
+## Appendix: All code in this assignment
+
+```{r ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE} 
+# this chunk generates the complete code appendix. 
+# eval=FALSE tells R not to run (``evaluate'') the code here (it was already run before).
+```
