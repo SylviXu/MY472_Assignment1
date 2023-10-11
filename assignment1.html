@@ -437,18 +437,36 @@ and rejected students by merit and gender in each category.</p>
 <p>Here, I will calculate the average sepal length, the total number of
 observations, and the mean petal width for each species of the dataset
 “iris”.</p>
+<pre class="r"><code># Load the &quot;iris&quot; dataset
+data(iris)
+
+# Group the data by species and calculate the average sepal length
+sepal_length_summary &lt;- iris %&gt;%
+  group_by(Species) %&gt;%
+  summarize(Avg_Sepal_Length = mean(Sepal.Length))
+sepal_length_summary</code></pre>
 <pre><code>## # A tibble: 3 × 2
 ##   Species    Avg_Sepal_Length
 ##   &lt;fct&gt;                 &lt;dbl&gt;
 ## 1 setosa                 5.01
 ## 2 versicolor             5.94
 ## 3 virginica              6.59</code></pre>
+<pre class="r"><code># Calculate the total number of observations for each species
+observation_count &lt;- iris %&gt;%
+  group_by(Species) %&gt;%
+  summarize(Count = n())
+observation_count</code></pre>
 <pre><code>## # A tibble: 3 × 2
 ##   Species    Count
 ##   &lt;fct&gt;      &lt;int&gt;
 ## 1 setosa        50
 ## 2 versicolor    50
 ## 3 virginica     50</code></pre>
+<pre class="r"><code># Calculate the mean petal width for each species
+petal_width_summary &lt;- iris %&gt;%
+  group_by(Species) %&gt;%
+  summarize(Avg_Petal_Width = mean(Petal.Width))
+petal_width_summary</code></pre>
 <pre><code>## # A tibble: 3 × 2
 ##   Species    Avg_Petal_Width
 ##   &lt;fct&gt;                &lt;dbl&gt;

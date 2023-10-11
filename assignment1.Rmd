@@ -50,7 +50,7 @@ head(wider_table)
 
 Here, I will calculate the average sepal length, the total number of observations, and the mean petal width for each species of the dataset "iris".
 
-```{r ex3}
+```{r ex3, echo=TRUE}
 
 # Load the "iris" dataset
 data(iris)
