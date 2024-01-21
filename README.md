@@ -4,3 +4,5 @@ And the assignment problem set could be found [here](https://lse-my472.github.io
 
 - `assignment1.html` presents the final output and interpretations of all problems.
 - `assignment1.Rmd` is an RMarkdown file and contains several code chunks for each exercise.  
+
+Note: this is a formative assessment which does not count towards the final grade, only for coding practice and format checking. 
